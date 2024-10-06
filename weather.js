@@ -78,15 +78,18 @@ document.body.addEventListener("click", ev => {
             localStorage.setItem("lat", lat);
             localStorage.setItem("lon", lon);
             localStorage.setItem("name", name);
+
+            localStorage.setItem("Location",JSON.stringify([lat,lon,name]))
             showWeather(lat, lon, name);
         }
     }
 });
 
 document.body.onload = () => {
-    const lat = localStorage.getItem("lat") || 0;
-    const lon = localStorage.getItem("lon") || 0;
-    const name = localStorage.getItem("name") || " ";
+    var data = JSON.parse(localStorage.getItem("Location")) || ["" , "" , ""];
+
+    console.log(data);
+    const [lat,lon,name] = data;
 
     if (lat !== 0 && lon !== 0) {
         showWeather(lat, lon, name);
