@@ -75,10 +75,6 @@ document.body.addEventListener("click", ev => {
         const { lat, lon, name } = li.dataset;
 
         if (lat && lon) {
-            localStorage.setItem("lat", lat);
-            localStorage.setItem("lon", lon);
-            localStorage.setItem("name", name);
-
             localStorage.setItem("Location",JSON.stringify([lat,lon,name]))
             showWeather(lat, lon, name);
         }
@@ -86,7 +82,7 @@ document.body.addEventListener("click", ev => {
 });
 
 document.body.onload = () => {
-    var data = JSON.parse(localStorage.getItem("Location")) || ["" , "" , ""];
+    var data = JSON.parse(localStorage.getItem("Location")) || [0 , 0 , ""];
 
     console.log(data);
     const [lat,lon,name] = data;
